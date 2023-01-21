@@ -1,2 +1,2 @@
-# Dataplex Labs for Big Data Engineers and Architects
+# Dataplex Labs for Big Data Practitioners
 
