@@ -15,11 +15,28 @@ YOUR_GCP_MULTI_REGION="US"
 BQ_CONNECTOR_JAR_GCS_URI="gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.22.2.jar"
 ```
 
-2. Run the Terraform for organization policy edits and enabling Google APIs
+2. Run the Terraform plan
 ```
 cd ~/dataplex-oda/00-resources/terraform
 
 terraform init
+
+terraform plan \
+  -var="project_id=${PROJECT_ID}" \
+  -var="project_number=${PROJECT_NBR}" \
+  -var="gcp_account_name=${GCP_ACCOUNT_NAME}" \
+  -var="org_id=${ORG_ID}"  \
+  -var="cloud_composer_image_version=${CLOUD_COMPOSER_IMG_VERSION}" \
+  -var="gcp_region=${YOUR_GCP_REGION}" \
+  -var="gcp_zone=${YOUR_GCP_ZONE}" \
+  -var="gcp_multi_region=${YOUR_GCP_MULTI_REGION}" \
+  -var="bq_connector_jar_gcs_uri=${BQ_CONNECTOR_JAR_GCS_URI}" \
+  --auto-approve
+```
+
+3. Provision the environment
+```
+cd ~/dataplex-oda/00-resources/terraform
 
 terraform apply \
   -var="project_id=${PROJECT_ID}" \
@@ -32,9 +49,6 @@ terraform apply \
   -var="gcp_multi_region=${YOUR_GCP_MULTI_REGION}" \
   -var="bq_connector_jar_gcs_uri=${BQ_CONNECTOR_JAR_GCS_URI}" \
   --auto-approve
-  
-  
-  #\-auto-approve >> dataplex-foundations-tf.output
 ```
 
 **Note:** Wait till the provisioning completes (~10 minutes) before moving to the next section.
