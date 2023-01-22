@@ -27,7 +27,6 @@ terraform apply \
   -var="gcp_account_name=${GCP_ACCOUNT_NAME}" \
   -var="org_id=${ORG_ID}"  \
   -var="cloud_composer_image_version=${CLOUD_COMPOSER_IMG_VERSION}" \
-  -var="spark_container_image_tag=${SPARK_CUSTOM_CONTAINER_IMAGE_TAG}" \
   -var="gcp_region=${YOUR_GCP_REGION}" \
   -var="gcp_zone=${YOUR_GCP_ZONE}" \
   -var="gcp_multi_region=${YOUR_GCP_MULTI_REGION}" \
