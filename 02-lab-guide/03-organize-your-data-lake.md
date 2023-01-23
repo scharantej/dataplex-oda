@@ -58,14 +58,14 @@ In Cloud Shell, while in the lab's project scope, paste the following-
 ```
 PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
 PROJECT_NBR=`gcloud projects describe $PROJECT_ID | grep projectNumber | cut -d':' -f2 |  tr -d "'" | xargs`
-UMSA_FQN="dew-lab-lab-sa@${PROJECT_ID}.iam.gserviceaccount.com"
+UMSA_FQN="lab-sa@${PROJECT_ID}.iam.gserviceaccount.com"
 LOCATION="us-central1"
-METASTORE_NM="dew-lab-dpms-$PROJECT_NBR"
-LAKE_NM="oda_lake"
-DATA_RAW_ZONE_NM="oda_raw"
-DATA_CURATED_ZONE_NM="oda_curated"
-DATA_CONSUMPTION_ZONE_NM="oda_consumption"
-MISC_RAW_ZONE_NM="oda_misc"
+METASTORE_NM="lab-dpms-$PROJECT_NBR"
+LAKE_NM="oda-lake"
+DATA_RAW_ZONE_NM="oda-raw-zone"
+DATA_CURATED_ZONE_NM="oda-curated-zone"
+DATA_CONSUMPTION_ZONE_NM="oda-consumption-zone"
+MISC_RAW_ZONE_NM="oda-misc-zone"
 ```
 
 <hr>
@@ -90,8 +90,11 @@ We created a Dataproc Metastore Service with GRPC endpoint via Terraform; We wil
 
 In Cloud Shell, paste the below-
 ```
-gcloud dataplex lakes create $LAKE_NM --location=$LOCATION --metastore-service=projects/${PROJECT_ID}/services/${METASTORE_NM}
+gcloud dataplex lakes create $LAKE_NM --location=$LOCATION \
+--metastore-service=projects/${PROJECT_ID}/locations/$LOCATION/services/${METASTORE_NM}
 ```
+
+This takes about 10 minutes.
 
 <hr>
 
