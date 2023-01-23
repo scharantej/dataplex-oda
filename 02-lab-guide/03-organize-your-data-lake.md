@@ -11,7 +11,7 @@ Dataplex is Google Cloud Platform's solution to architect a Data Mesh architectu
 ### 1.2. Dataplex Lake
 A Dataplex Lake is a logical metadata abstraction on top of your assets (structured and unstructured). There are various capabiltiies offered in Dataplex over a Data Lake that we will cover in subsequent labs. It is analogous to a "domain". And is also analogous to a "Data Lake" - a cordoned off repository of your assets.
 
-A Dataplex Lake, although provisioned in a GCP project, can span multiple projects. [Link to docs](https://cloud.google.com/dataplex/docs/create-lake)
+A Dataplex Lake, although provisioned in a GCP project, can span multiple projects. [Documentation](https://cloud.google.com/dataplex/docs/create-lake)
 
 To create a Dataplex Lake, one must have the pre-defined roles  ```roles/dataplex.admin``` or ```roles/dataplex.editor```.
 
@@ -42,7 +42,7 @@ Curated zones support Cloud Storage bucket-level or BigQuery dataset-level granu
 
 #### 1.3.3. IAM permisions for Dataplex Zone creation
 
-To add a zone, you must be granted IAM roles containing the dataplex.lakes.create IAM permission. The Dataplex specific role roles/dataplex.admin can be used to grant add permissions. [Link to docs](https://cloud.google.com/dataplex/docs/iam-and-access-control)
+To add a zone, you must be granted IAM roles containing the dataplex.lakes.create IAM permission. The Dataplex specific role roles/dataplex.admin can be used to grant add permissions. [Documentation](https://cloud.google.com/dataplex/docs/iam-and-access-control)
 
 <hr>
 
