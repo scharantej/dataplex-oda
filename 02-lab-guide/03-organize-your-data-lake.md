@@ -40,7 +40,7 @@ This means that the data should be compatible with the schema defined for the ta
 
 Curated zones support Cloud Storage bucket-level or BigQuery dataset-level granularity for read and write permissions. For more information, see Access control with IAM.
 
-#### IAM permisions for Dataplex Zone creation
+#### 1.3.3. IAM permisions for Dataplex Zone creation
 
 To add a zone, you must be granted IAM roles containing the dataplex.lakes.create IAM permission. The Dataplex specific role roles/dataplex.admin can be used to grant add permissions. [Link to docs](https://cloud.google.com/dataplex/docs/iam-and-access-control)
 
