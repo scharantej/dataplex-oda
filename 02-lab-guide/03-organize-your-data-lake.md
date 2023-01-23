@@ -83,7 +83,7 @@ gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA
 --role="roles/dataplex.admin"
 ```
 
-![README](../01-images/03-03.png)   
+![IAM](../01-images/03-03.png)   
 <br><br>
 
 <hr>
@@ -101,12 +101,14 @@ gcloud dataplex lakes create $LAKE_NM --location=$LOCATION \
 
 This takes about 2 minutes.
 
-![README](../01-images/03-01.png)   
+![LAKE](../01-images/03-01.png)   
 <br><br>
 
 <hr>
 
-### 2.4. Create zones for the structured data assets
+### 2.4. Create zones 
+
+#### 2.4.1. for the structured data assets
 
 We will create a zone each for raw, curated and consumption, for the structured data assets-
 
@@ -130,13 +132,19 @@ gcloud dataplex zones create ${DATA_CONSUMPTION_ZONE_NM} --location=$LOCATION --
 
 <hr>
 
-### 2.5. Create a zone for the non-data assets 
+#### 2.4.2. Create a zone for the non-data assets 
 
 We will create a raw zone for the non-data assets-
 ```
 gcloud dataplex zones create ${MISC_RAW_ZONE_NM} --location=$LOCATION --lake=$LAKE_NM \
 --resource-location-type=SINGLE_REGION --type=RAW --discovery-enabled --discovery-schedule="0 * * * *"
 ```
+
+#### 2.4.3. Pictorial of zones created
+
+
+![LAKE](../01-images/03-02.png)   
+<br><br>
 
 <hr>
 
