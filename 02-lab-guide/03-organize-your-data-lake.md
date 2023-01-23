@@ -62,6 +62,7 @@ PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
 PROJECT_NBR=`gcloud projects describe $PROJECT_ID | grep projectNumber | cut -d':' -f2 |  tr -d "'" | xargs`
 UMSA_FQN="lab-sa@${PROJECT_ID}.iam.gserviceaccount.com"
 LOCATION="us-central1"
+LOCATION_MULTI="US"
 METASTORE_NM="lab-dpms-$PROJECT_NBR"
 LAKE_NM="oda-lake"
 DATA_RAW_ZONE_NM="oda-raw-zone"
@@ -114,8 +115,12 @@ We will create a zone each for raw, curated and consumption, for the structured 
 
 Raw:
 ```
-gcloud dataplex zones create ${DATA_RAW_ZONE_NM} --location=$LOCATION --lake=$LAKE_NM \
---resource-location-type=SINGLE_REGION --type=RAW --discovery-enabled --discovery-schedule="0 * * * *"
+gcloud dataplex zones create ${DATA_RAW_ZONE_NM} \
+--lake=$LAKE_NM \
+--resource-location-type=MULTI_REGION \
+--location=$LOCATION \
+--type=RAW --discovery-enabled \
+--discovery-schedule="0 * * * *"
 ```
 
 Curated:
