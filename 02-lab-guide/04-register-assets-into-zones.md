@@ -53,7 +53,11 @@ gcloud dataplex assets create $DATA_RAW_ZONE_NM --location=$LOCATION --lake=$LAK
 --resource-name=projects/$PROJECT_ID/datasets/$DATA_RAW_ZONE_NM --discovery-enabled --discovery-schedule="0 * * * *"
 ```
 
-### 1.4. Register BigQuery Datasets as assets into the CURATED zone
+### 1.4. Load some data into an asset in the RAW zone
+
+Paste this command in Cloud Shell to create a table-
+
+
 
 
 
