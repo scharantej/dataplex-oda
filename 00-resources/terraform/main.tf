@@ -321,7 +321,7 @@ resource "time_sleep" "sleep_after_identities_permissions" {
 }
 
 /************************************************************************
-7. Create VPC network & subnet creation
+7. Create VPC network & subnet 
  ***********************************************************************/
 module "vpc_creation" {
   source                                 = "terraform-google-modules/network/google"
@@ -556,7 +556,7 @@ resource "google_bigquery_dataset" "bq_dataset_creation" {
 
 resource "google_dataproc_metastore_service" "datalake_metastore" {
   provider      = google-beta
-  service_id    = local.metastore_nm
+  service_id    = local.dpms_nm
   location      = local.location
   tier          = "DEVELOPER"
   network       = "projects/${local.project_id}/global/networks/${local.dew_vpc_nm}"
