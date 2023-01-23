@@ -64,5 +64,19 @@ terraform apply \
 
 The Cloud Composer and Dataproc Metastore creation run simultaneously and take about 30 minutes. You can validate the rest of the setup, in the interim.
 
+### 4.1. Network
+
+### 4.2. Storage
+
+### 4.3. Datasets
+
+### 4.4. Notebooks
+
+### 4.5. Scripts
+
+### 4.6. Dataproc Metastore
+
+### 4.7. Cloud Composer
+
 <hr>
 
