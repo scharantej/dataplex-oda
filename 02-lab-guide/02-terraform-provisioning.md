@@ -80,3 +80,7 @@ The Cloud Composer and Dataproc Metastore creation run simultaneously and take a
 
 <hr>
 
+Proceed to the next lab module.
+
+<hr>
+
