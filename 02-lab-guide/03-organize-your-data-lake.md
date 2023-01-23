@@ -98,7 +98,7 @@ This takes about 10 minutes.
 
 <hr>
 
-### 2.4. Create zonees for the structured data assets
+### 2.4. Create zones for the structured data assets
 
 We will create a zone each for raw, curated and consumption, for the structured data assets-
 
