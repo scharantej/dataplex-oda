@@ -44,6 +44,8 @@ Curated zones support Cloud Storage bucket-level or BigQuery dataset-level granu
 
 To add a zone, you must be granted IAM roles containing the dataplex.lakes.create IAM permission. The Dataplex specific role roles/dataplex.admin can be used to grant add permissions. [Documentation](https://cloud.google.com/dataplex/docs/iam-and-access-control)
 
+
+
 <hr>
 
 <hr>
@@ -81,6 +83,9 @@ gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA
 --role="roles/dataplex.admin"
 ```
 
+![README](../01-images/03-03.png)   
+<br><br>
+
 <hr>
 
 ### 2.3. Create a Lake
@@ -94,7 +99,10 @@ gcloud dataplex lakes create $LAKE_NM --location=$LOCATION \
 --metastore-service=projects/${PROJECT_ID}/locations/$LOCATION/services/${METASTORE_NM}
 ```
 
-This takes about 10 minutes.
+This takes about 2 minutes.
+
+![README](../01-images/03-01.png)   
+<br><br>
 
 <hr>
 
