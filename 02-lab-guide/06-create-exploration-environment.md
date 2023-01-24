@@ -49,4 +49,32 @@ For data in BigQuery, you can access BigQuery tables directly through Spark with
 ## 3. Lab: Create a Dataplex Exploration Workbench Environment
 
 
+### 3.1. Declare variables
+
+Paste the folloing in Cloud Shell-
+```
+PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
+PROJECT_NBR=`gcloud projects describe $PROJECT_ID | grep projectNumber | cut -d':' -f2 |  tr -d "'" | xargs`
+UMSA_FQN="lab-sa@${PROJECT_ID}.iam.gserviceaccount.com"
+LOCATION="us-central1"
+METASTORE_NM="lab-dpms-$PROJECT_NBR"
+LAKE_NM="oda-lake"
+DATA_RAW_ZONE_NM="oda-raw-zone"
+DATA_CURATED_ZONE_NM="oda-curated-zone"
+DATA_CONSUMPTION_ZONE_NM="oda-consumption-zone"
+MISC_RAW_ZONE_NM="oda-misc-zone"
+
+CRIMES_ASSET="chicago-crimes"
+CRIMES_DS="oda_crimes_ds"
+```
+### 3.2. Create a DEW environment template
+
+```
+gcloud dataplex environments create de-dew-template \
+--project=$PROJECT_ID \
+--location=$LOCATION \
+--lake=$LAKE_NM \
+--os-image-version=1.0 \
+--display-name "Data Engineering DEW Template"
+```
 
