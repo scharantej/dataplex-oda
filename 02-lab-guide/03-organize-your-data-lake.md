@@ -1,5 +1,7 @@
 # Organize your enterprise assets into Lakes and Zones
 
+In this lab module, we will first go over concepts and then into the lab, trying out the concepts.
+
 ## 1. Concepts
 
 ### 1.1. Data Mesh
