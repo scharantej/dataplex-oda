@@ -133,9 +133,14 @@ The physical BigQuery table is called an entity in this case, and is listed.
 
 In this lab sub-module, we will simply add the storage buckets created via Terraform with datasets in them, into the raw zone, and curated zone, depending on format.
 
-| Use Case | Format | GCS location | Zone | Zone Type |
-| -- | :--- | :--- | :--- | :--- | 
-| Icecream Sales Forecasting | CSV | gs://oda-raw-data-PROJECT_NBR/icecream-sales-forecasting | oda-raw-zone | RAW |
+
+### 2.1. Raw Zone: oda-raw-zone
+
+GCS Path: gs://oda-raw-data-PROJECT_NBR
+
+| Use Case | Format | GCS directory | 
+| -- | :--- | :--- | 
+| Icecream Sales Forecasting | CSV | icecream-sales-forecasting | 
 
 
 
