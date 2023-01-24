@@ -21,8 +21,10 @@ DATA_CURATED_ZONE_NM="oda-curated-zone"
 DATA_CONSUMPTION_ZONE_NM="oda-consumption-zone"
 MISC_RAW_ZONE_NM="oda-misc-zone"
 
-CRIMES_ASSET="Chicago Crimes"
-CRIMES_DS="crimes_ds"
+CRIMES_ASSET="chicago-crimes"
+CRIMES_DS="oda_crimes_ds"
+
+
 ```
 
 ### 1.2. List BigQuery Datasets
@@ -46,6 +48,8 @@ Author's results-
 +----------------------+
 ```
 
+Note that these datasets were automatically created and each of them map to a Dataplex zone we created in the previous module.
+
 ### 1.3. Create a "crimes" BigQuery Dataset
 
 ```
@@ -54,7 +58,7 @@ bq --location=$LOCATION_MULTI mk \
     $PROJECT_ID:$CRIMES_DS
 ```
 
-### 1.4. Load some data into the "crimes" BgQuery dataset
+### 1.4. Load some data into the newly created "crimes" BigQuery dataset from a BigQuery public dataset
 
 Paste this command in Cloud Shell to create a table-
 ```
@@ -64,7 +68,7 @@ bq --location=$LOCATION_MULTI query \
 
 Reload the BQ UI, you should see the table created. Query the table-
 ```
-SELECT * FROM `crimes_ds.chicago_crimes` LIMIT 1000
+SELECT * FROM `oda_crimes_ds.chicago_crimes` LIMIT 1000
 ```
 
 Author's output:
@@ -77,19 +81,25 @@ Author's output:
 Paste this command in Cloud Shell to register contents of BQ datasets (currently empty) into corressponding zones-
 
 ```
-gcloud dataplex assets create $DATA_RAW_ZONE_NM --location=$LOCATION --lake=$LAKE_NM --zone=$DATA_RAW_ZONE_NM --resource-type=BIGQUERY_DATASET \
---resource-name=projects/$PROJECT_ID/datasets/$DATA_RAW_ZONE_DS --discovery-enabled --discovery-schedule="0 * * * *"
+gcloud dataplex assets create $CRIMES_ASSET --location=$LOCATION --lake=$LAKE_NM --zone=$DATA_RAW_ZONE_NM --resource-type=BIGQUERY_DATASET \
+--resource-name=projects/$PROJECT_ID/datasets/$CRIMES_DS --discovery-enabled --discovery-schedule="0 * * * *" \
+--display-name 'Chicago Crimes'
 
 ```
 
-### 1.5. Switch to the Dataplex UI and view the raw zone "oda-raw-zone" to see if the asset was discovered
+### 1.6. Switch to the Dataplex UI, Manage->ODA-Lake->ODA-RAW-ZONE->Assets
+
+Review the various tabs of the asset registered.
 
 
 
+### 1.7. In the Dataplex Assets UI, review the "entities" tab
+
+The physical BigQuery table is called an entity in this case, and is listed.
 
 
 
-
+## 2. Lab B: Register Cloud Storage Datasets
 
 
 
