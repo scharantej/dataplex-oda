@@ -170,19 +170,9 @@ Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-RAW-ZONE -> Assets & famili
 ![ASST-RD-1](../01-images/04-04a.png)   
 <br><br>
 
-![ASST-RD-2](../01-images/04-04b.png)   
-<br><br>
-
-![ASST-RD-3](../01-images/04-04c.png)   
-<br><br>
-
-
-#### 2.1.4. Review the entities registered in the Dataplex UI
-
-Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-RAW-ZONE -> Entities & familiarize yourself with the various tabs and entries
-
-
 <hr>
+
+<br>
 
 ### 2.2. Register data assets into Curated Zone: oda-curated-zone
 
@@ -200,7 +190,6 @@ GCS Path: gs://oda-curated-data-PROJECT_NBR
 
 To register the data assets, we will merely register the buckets and the data assets will automatically get discovered and entities registered. We will review entities created in the next lab module.
 
-
 ```
 gcloud dataplex assets create misc-datasets \
 --location=$LOCATION \
@@ -215,15 +204,14 @@ gcloud dataplex assets create misc-datasets \
 
 #### 2.2.3. Review the assets registered in the Dataplex UI
 
-Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-RCURATEDAW-ZONE -> Assets & familiarize yourself with the various tabs and entries
+Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-CURATED-ZONE -> Assets & familiarize yourself with the various tabs and entries.
 
-
-#### 2.2.4. Review the entities registered in the Dataplex UI
-
-Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-CURATED-ZONE -> Entities & familiarize yourself with the various tabs and entries
-
+![ASST-CD-1](../01-images/04-05a.png)   
+<br><br>
 
 <hr>
+
+<br>
 
 ### 2.3. Register notebook assets into Raw Zone: oda-misc-zone
 
