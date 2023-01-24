@@ -83,6 +83,20 @@ customerID,gender,SeniorCitizen,Partner,Dependents,tenure,PhoneService,MultipleL
 
 Notice that the train data has the column "Churn".<br>
 
-We will remediate the action in the next lab module.
+<hr>
 
 
+### 2. Discovery of data assets in the Curated Zone: oda-curated-zone
+
+Review the asset, entities, schema, external table in BigQuery for assets in the Dataplex oda-curated-zone.
+
+
+### 4. Discovery of data assets in the RAW Zone: oda-misc-zone
+
+Review the asset, entities, in the Dataplex oda-misc-zone.
+
+<br>
+
+<hr>
+This concludes the lab module. Proceed to the next module, where we will create a Dataplex "Environment" lanuch up a Jupyter notebook and explore metadata.
+<hr>
