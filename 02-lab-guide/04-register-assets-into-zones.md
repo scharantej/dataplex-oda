@@ -148,6 +148,7 @@ GCS Path: gs://oda-raw-data-PROJECT_NBR
 GCS Path: gs://oda-curated-data-PROJECT_NBR
 
 | Domain Use Case | Format | GCS directory | 
+| -- | :--- | :--- | 
 | Retail Transactions Anomaly Detection | Parquet | retail-transactions-anomaly-detection | 
 
 ### 2.3. Register notebook assets into Raw Zone: oda-misc-zone
