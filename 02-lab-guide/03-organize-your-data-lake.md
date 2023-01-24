@@ -99,7 +99,7 @@ Paste this in cloud shell-
 gcloud beta metastore services update ${METASTORE_NM} --data-catalog-sync --location=$LOCATION 
 ```
 
-https://cloud.google.com/dataproc-metastore/docs/data-catalog-sync
+Documentation: https://cloud.google.com/dataproc-metastore/docs/data-catalog-sync
 
 ### 2.4. Create a Lake
 
