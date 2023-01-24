@@ -149,7 +149,7 @@ GCS Path: gs://oda-raw-data-PROJECT_NBR
 
 #### 2.1.2. Register the assets
 
-To register the data assets, we will merely register the buckets and the data assets will automatically get discovered and entities registered.
+To register the data assets, we will merely register the buckets and the data assets will automatically get discovered and entities registered. We will review entities created in the next lab module.
 
 ```
 gcloud dataplex assets create misc-datasets \
@@ -165,7 +165,16 @@ gcloud dataplex assets create misc-datasets \
 
 #### 2.1.3. Review the assets registered in the Dataplex UI
 
-Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-RAW-ZONE -> Assets & familiarize yourself with the various tabs and entries
+Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-RAW-ZONE -> Assets & familiarize yourself with the various tabs and entries.
+
+![ASST-RD-1](../01-images/04-04a.png)   
+<br><br>
+
+![ASST-RD-2](../01-images/04-04b.png)   
+<br><br>
+
+![ASST-RD-3](../01-images/04-04c.png)   
+<br><br>
 
 
 #### 2.1.4. Review the entities registered in the Dataplex UI
@@ -189,7 +198,8 @@ GCS Path: gs://oda-curated-data-PROJECT_NBR
 
 #### 2.2.2. Register the assets
 
-To register the data assets, we will merely register the buckets and the data assets will automatically get discovered and entities registered.
+To register the data assets, we will merely register the buckets and the data assets will automatically get discovered and entities registered. We will review entities created in the next lab module.
+
 
 ```
 gcloud dataplex assets create misc-datasets \
