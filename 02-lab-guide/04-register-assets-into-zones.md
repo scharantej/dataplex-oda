@@ -213,13 +213,56 @@ Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-CURATED-ZONE -> Assets & fa
 
 <br>
 
-### 2.3. Register notebook assets into Raw Zone: oda-misc-zone
+### 2.3. Register notebooks assets into Raw Zone: oda-misc-zone
 
+#### 2.3.1. Assets to be registered
+
+The following are the notebook assets to be registered into the Dataplex Raw Zone called oda-misc-zone. The notebook assets are located at -<br>
 GCS Path: gs://oda-raw-notebook-PROJECT_NBR
 
 | Domain Use Case | Format | GCS directory | 
 | -- | :--- | :--- | 
-| Icecream Sales Forecasting | CSV | icecream-sales-forecasting | 
+| Chicago Crimes Analytics | .pynb | chicago-crimes-analysis | 
+| Icecream Sales Forecasting | .pynb | icecream-sales-forecasting |
+| Retail Transactions Anomaly Detection | .ipynb | retail-transactions-anomaly-detection |
 | Telco Customer Churn Prediction | CSV | telco-customer-churn-prediction | 
 
 
+To see the listing in Cloud Shell, paste the below command-
+```
+gsutil ls gs://oda-raw-notebook-$PROJECT_NBR
+```
+The author's output is:<br>
+
+gs://oda-raw-notebook-36819656457/chicago-crimes-analysis/<br>
+gs://oda-raw-notebook-36819656457/icecream-sales-forecasting/<br>
+gs://oda-raw-notebook-36819656457/retail-transactions-anomaly-detection/<br>
+gs://oda-raw-notebook-36819656457/telco-customer-churn-prediction/
+
+
+#### 2.3.2. Register the assets
+
+To register the notebook assets, we will merely register the buckets and the notebook assets will automatically get discovered and entities registered. We will review entities created in the next lab module.
+
+```
+gcloud dataplex assets create notebooks \
+--location=$LOCATION \
+--lake=$LAKE_NM \
+--zone=$MISC_RAW_ZONE_NM \
+--resource-type=STORAGE_BUCKET \
+--resource-name=projects/$PROJECT_ID/buckets/oda-raw-notebook-$PROJECT_NBR \
+--discovery-enabled \
+--discovery-schedule="0 * * * *" \
+--display-name 'Analytics Notebooks'
+```
+
+#### 2.3.3. Review the assets registered in the Dataplex UI
+
+Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-MISC-ZONE -> Assets & familiarize yourself with the various tabs and entries.
+
+![ASST-RD-1](../01-images/04-06a.png)   
+<br><br>
+
+<hr>
+
+<br>
