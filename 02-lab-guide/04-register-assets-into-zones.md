@@ -63,7 +63,8 @@ bq --location=$LOCATION_MULTI mk \
 Paste this command in Cloud Shell to create a table-
 ```
 bq --location=$LOCATION_MULTI query \
---use_legacy_sql=false "CREATE OR REPLACE TABLE $CRIMES_DS.chicago_crimes AS SELECT * FROM bigquery-public-data.chicago_crime.crime"
+--use_legacy_sql=false \
+"CREATE OR REPLACE TABLE $CRIMES_DS.chicago_crimes AS SELECT * FROM bigquery-public-data.chicago_crime.crime"
 ```
 
 Reload the BQ UI, you should see the table created. Query the table-
