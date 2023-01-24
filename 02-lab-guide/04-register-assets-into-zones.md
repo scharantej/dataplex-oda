@@ -159,7 +159,8 @@ gcloud dataplex assets create lab-datasets \
 --resource-type=STORAGE_BUCKET \
 --resource-name=projects/$PROJECT_ID/buckets/oda-raw-data-$PROJECT_NBR \
 --discovery-enabled \
---discovery-schedule="0 * * * *"
+--discovery-schedule="0 * * * *" \
+--display-name 'Miscellaneous Datasets'
 ```
 
 #### 2.1.3. Review the assets registered in the Dataplex UI
