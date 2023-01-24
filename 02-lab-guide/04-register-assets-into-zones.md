@@ -20,6 +20,9 @@ DATA_RAW_ZONE_NM="oda-raw-zone"
 DATA_CURATED_ZONE_NM="oda-curated-zone"
 DATA_CONSUMPTION_ZONE_NM="oda-consumption-zone"
 MISC_RAW_ZONE_NM="oda-misc-zone"
+
+CRIMES_ASSET="Chicago Crimes"
+CRIMES_DS="crimes_ds"
 ```
 
 ### 1.2. List BigQuery Datasets
@@ -43,19 +46,43 @@ Author's results-
 +----------------------+
 ```
 
+### 1.3. Create a "crimes" BigQuery Dataset
 
-### 1.3. Register BigQuery Datasets as assets into the RAW zone
+```
+bq --location=$LOCATION_MULTI mk \
+    --dataset \
+    $PROJECT_ID:$CRIMES_DS
+```
+
+### 1.4. Load some data into the "crimes" BgQuery dataset
+
+Paste this command in Cloud Shell to create a table-
+```
+bq --location=$LOCATION_MULTI query \
+--use_legacy_sql=false "CREATE OR REPLACE TABLE $CRIMES_DS.chicago_crimes AS SELECT * FROM bigquery-public-data.chicago_crime.crime"
+```
+
+Reload the BQ UI, you should see the table created. Query the table-
+```
+SELECT * FROM `crimes_ds.chicago_crimes` LIMIT 1000
+```
+
+Author's output:
+![IAM](../01-images/04-01.png)   
+<br><br>
+
+
+### 1.5. Register the crimes BigQuery Dataset as an asset into the RAW zone
 
 Paste this command in Cloud Shell to register contents of BQ datasets (currently empty) into corressponding zones-
 
 ```
 gcloud dataplex assets create $DATA_RAW_ZONE_NM --location=$LOCATION --lake=$LAKE_NM --zone=$DATA_RAW_ZONE_NM --resource-type=BIGQUERY_DATASET \
---resource-name=projects/$PROJECT_ID/datasets/$DATA_RAW_ZONE_NM --discovery-enabled --discovery-schedule="0 * * * *"
+--resource-name=projects/$PROJECT_ID/datasets/$DATA_RAW_ZONE_DS --discovery-enabled --discovery-schedule="0 * * * *"
+
 ```
 
-### 1.4. Load some data into an asset in the RAW zone
-
-Paste this command in Cloud Shell to create a table-
+### 1.5. Switch to the Dataplex UI and view the raw zone "oda-raw-zone" to see if the asset was discovered
 
 
 
