@@ -35,7 +35,6 @@ dew_vpc_nm                  = "lab-vpc-${local.project_nbr}"
 dew_subnet_nm               = "lab-snet"
 dew_subnet_cidr             = "10.0.0.0/16"
 
-dew_raw_ds                  = "oda_raw"
 dew_data_bucket_raw         = "oda-raw-data-${local.project_nbr}"
 dew_code_bucket             = "oda-raw-code-${local.project_nbr}"
 dew_notebook_bucket         = "oda-raw-notebook-${local.project_nbr}"
@@ -43,12 +42,8 @@ dew_model_bucket            = "oda-raw-model-${local.project_nbr}"
 dew_bundle_bucket           = "oda-raw-model-mleap-bundle-${local.project_nbr}"
 dew_metrics_bucket          = "oda-raw-model-metrics-${local.project_nbr}"
 
-dew_curated_ds              = "oda_curated"
-dew_consumption_ds          = "oda_consumption"
-dew_curated_ml_ds           = "oda_model_mart"
 dew_data_bucket_curated     = "oda-curated-data-${local.project_nbr}"
 dew_data_bucket_consumption = "oda-consumption-data-${local.project_nbr}"
-
 
 CC_GMSA_FQN                 = "service-${local.project_nbr}@cloudcomposer-accounts.iam.gserviceaccount.com"
 GCE_GMSA_FQN                = "${local.project_nbr}-compute@developer.gserviceaccount.com"
@@ -537,22 +532,39 @@ resource "google_storage_bucket_object" "upload_to_gcs_notebooks" {
 
 }
 
-variable "datasets_to_upload" {
+variable "csv_datasets_to_upload" {
   type = map(string)
   default = {
     
     "../datasets/icecream-sales-forecasting/icecream_sales.csv" = "icecream-sales-forecasting/icecream_sales.csv",
     "../datasets/telco-customer-churn-prediction/customer_churn_score_data.csv" = "telco-customer-churn-prediction/customer_churn_score_data.csv",
-    "../datasets/telco-customer-churn-prediction/customer_churn_train_data.csv" = "telco-customer-churn-prediction/customer_churn_train_data.csv",
+    "../datasets/telco-customer-churn-prediction/customer_churn_train_data.csv" = "telco-customer-churn-prediction/customer_churn_train_data.csv"
+  }
+}
+
+resource "google_storage_bucket_object" "upload_to_gcs_datasets_raw" {
+  for_each = var.csv_datasets_to_upload
+  name     = each.value
+  source   = "${path.module}/${each.key}"
+  bucket   = "${local.dew_data_bucket_raw}"
+  depends_on = [
+    time_sleep.sleep_after_bucket_creation
+  ]
+
+}
+
+variable "parquet_datasets_to_upload" {
+  type = map(string)
+  default = {
     "../datasets/retail-transactions-anomaly-detection/sales.parquet" = "retail-transactions-anomaly-detection/sales.parquet"  
   }
 }
 
-resource "google_storage_bucket_object" "upload_to_gcs_datasets" {
-  for_each = var.datasets_to_upload
+resource "google_storage_bucket_object" "upload_to_gcs_datasets_curated" {
+  for_each = var.parquet_datasets_to_upload
   name     = each.value
   source   = "${path.module}/${each.key}"
-  bucket   = "${local.dew_data_bucket_raw}"
+  bucket   = "${local.dew_data_bucket_curated}"
   depends_on = [
     time_sleep.sleep_after_bucket_creation
   ]
@@ -569,34 +581,16 @@ resource "time_sleep" "sleep_after_network_and_storage_steps" {
   depends_on = [
       time_sleep.sleep_after_network_and_firewall_creation,
       time_sleep.sleep_after_bucket_creation,
-      google_storage_bucket_object.upload_to_gcs_datasets,
+      google_storage_bucket_object.upload_to_gcs_datasets_raw,
+      google_storage_bucket_object.upload_to_gcs_datasets_curated,
       google_storage_bucket_object.upload_to_gcs_notebooks
 
   ]
 }
 
-/******************************************
-11. BigQuery dataset creation
-******************************************/
-
-resource "google_bigquery_dataset" "bq_raw_ds_creation" {
-  dataset_id                  = local.dew_raw_ds
-  location                    = local.location_multi
-}
-
-resource "google_bigquery_dataset" "bq_curated_ds_creation" {
-  dataset_id                  = local.dew_curated_ds
-  location                    = local.location_multi
-}
-
-resource "google_bigquery_dataset" "bq_consumption_ds_creation" {
-  dataset_id                  = local.dew_consumption_ds
-  location                    = local.location_multi
-}
-
 
 /******************************************
-12. Dataproc Metastore with gRPC endpoint
+11. Dataproc Metastore with gRPC endpoint
 ******************************************/
 
 resource "google_dataproc_metastore_service" "datalake_metastore" {
@@ -622,7 +616,7 @@ resource "google_dataproc_metastore_service" "datalake_metastore" {
 }
 
 /******************************************
-13. Cloud Composer
+12. Cloud Composer
 ******************************************/
 
 
