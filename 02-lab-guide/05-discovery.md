@@ -91,7 +91,7 @@ Notice that the train data has the column "Churn".<br>
 Review the asset, entities, schema, external table in BigQuery for assets in the Dataplex oda-curated-zone.
 
 
-### 4. Discovery of data assets in the RAW Zone: oda-misc-zone
+### 3. Discovery of data assets in the RAW Zone: oda-misc-zone
 
 Review the asset, entities, in the Dataplex oda-misc-zone.
 
