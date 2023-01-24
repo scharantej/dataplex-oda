@@ -89,10 +89,21 @@ gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA
 
 <hr>
 
-### 2.3. Create a Lake
+### 2.3. Enable Data Catalog Sync in the Dataproc Metastore Service
 
-We created a Dataproc Metastore Service with GRPC endpoint via Terraform; We will create a Dataplex Lake with the metastore attached to it.
+We created a Dataproc Metastore Service with GRPC endpoint via Terraform. We will enable the Data Catalog sync so that databases and tables metadata is hydrated in Data Catalg automatically.
 
+
+Paste this in cloud shell-
+```
+gcloud beta metastore services update ${METASTORE_NM} --data-catalog-sync --location=$LOCATION 
+```
+
+https://cloud.google.com/dataproc-metastore/docs/data-catalog-sync
+
+### 2.4. Create a Lake
+
+We will create a Dataplex Lake with the metastore attached to it.
 
 In Cloud Shell, paste the below-
 ```
@@ -107,9 +118,9 @@ This takes about 2 minutes.
 
 <hr>
 
-### 2.4. Create zones 
+### 2.5. Create zones 
 
-#### 2.4.1. for the structured data assets
+#### 2.5.1. for the structured data assets
 
 We will create a zone each for raw, curated and consumption, for the structured data assets-
 
@@ -137,7 +148,7 @@ gcloud dataplex zones create ${DATA_CONSUMPTION_ZONE_NM} --location=$LOCATION --
 
 <hr>
 
-#### 2.4.2. Create a zone for the non-data assets 
+#### 2.5.2. Create a zone for the non-data assets 
 
 We will create a raw zone for the non-data assets-
 ```
@@ -145,7 +156,7 @@ gcloud dataplex zones create ${MISC_RAW_ZONE_NM} --location=$LOCATION --lake=$LA
 --resource-location-type=SINGLE_REGION --type=RAW --discovery-enabled --discovery-schedule="0 * * * *"
 ```
 
-#### 2.4.3. Pictorial of zones created
+#### 2.5.3. Pictorial of zones created
 
 
 ![LAKE](../01-images/03-02.png)   
