@@ -263,6 +263,54 @@ Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-MISC-ZONE -> Assets & famil
 ![ASST-RMD-1](../01-images/04-06a.png)   
 <br><br>
 
+<hr>
+
+
+### 2.4. Register code assets into Raw Zone: oda-misc-zone
+
+#### 2.4.1. Assets to be registered
+
+The following are the code assets to be registered into the Dataplex Raw Zone called oda-misc-zone. The code assets are located at -<br>
+GCS Path: gs://oda-raw-code-PROJECT_NBR<br>
+
+To see the listing in Cloud Shell, paste the below command-
+```
+gsutil ls -r gs://oda-raw-code-$PROJECT_NBR
+```
+The author's output is:<br>
+<br>
+gsutil ls -r gs://oda-raw-code-$PROJECT_NBR<br>
+gs://oda-raw-code-36819656457/retail-transactions-anomaly-detection/:<br>
+gs://oda-raw-code-36819656457/retail-transactions-anomaly-detection/<br>
+gs://oda-raw-code-36819656457/retail-transactions-anomaly-detection/retail-transactions-anomaly-detection.sql<br>
+
+
+#### 2.4.2. Register the assets
+
+To register the notebook assets, we will merely register the buckets and the notebook assets will automatically get discovered and entities registered. We will review entities created in the next lab module.
+
+```
+gcloud dataplex assets create code-assets \
+--location=$LOCATION \
+--lake=$LAKE_NM \
+--zone=$MISC_RAW_ZONE_NM \
+--resource-type=STORAGE_BUCKET \
+--resource-name=projects/$PROJECT_ID/buckets/oda-raw-code-$PROJECT_NBR \
+--discovery-enabled \
+--discovery-schedule="0 * * * *" \
+--display-name 'Code Assets'
+```
+
+#### 2.4.3. Review the assets registered in the Dataplex UI
+
+Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-MISC-ZONE -> Assets & familiarize yourself with the various tabs and entries.
+
+![ASST-RMD-1](../01-images/04-07a.png)   
+<br><br>
+
+<hr>
+
+
 <br>
 
 <hr>
