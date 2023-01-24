@@ -72,7 +72,7 @@ SELECT * FROM `oda_crimes_ds.chicago_crimes` LIMIT 1000
 ```
 
 Author's output:
-![IAM](../01-images/04-01.png)   
+![LOAD](../01-images/04-01.png)   
 <br><br>
 
 
@@ -91,13 +91,29 @@ gcloud dataplex assets create $CRIMES_ASSET --location=$LOCATION --lake=$LAKE_NM
 
 Review the various tabs of the asset registered.
 
+![ASST-1](../01-images/04-02a.png)   
+<br><br>
+
+
+![ASST-2](../01-images/04-02b.png)   
+<br><br>
+
+![ASST-3](../01-images/04-02c.png)   
+<br><br>
+
+![ASST-4](../01-images/04-02d.png)   
+<br><br>
 
 
 ### 1.7. In the Dataplex Assets UI, review the "entities" tab
 
 The physical BigQuery table is called an entity in this case, and is listed.
 
+![ASST-5](../01-images/04-03.png)   
+<br><br>
 
+![ASST-6](../01-images/04-03b.png)   
+<br><br>
 
 ## 2. Lab B: Register Cloud Storage Datasets
 
