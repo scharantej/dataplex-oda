@@ -152,7 +152,7 @@ GCS Path: gs://oda-raw-data-PROJECT_NBR
 To register the data assets, we will merely register the buckets and the data assets will automatically get discovered and entities registered.
 
 ```
-gcloud dataplex assets create lab-datasets \
+gcloud dataplex assets create misc-datasets \
 --location=$LOCATION \
 --lake=$LAKE_NM \
 --zone=$DATA_RAW_ZONE_NM \
