@@ -5,7 +5,7 @@ In the previous module, we created a Dataplex Lake with a Dataproc Metastore Ser
 In this module, we will register assets into the Dataplex Zones created. 
 
 [Lab A: Register assets in BigQuery](04-register-assets-into-zones.md#1-lab-a-register-bigquery-datasets) <br>
-[Lab B: Register assets in Cloud Storage](04-register-assets-into-zones.md#2-lab-b-register-cloud-storage-datasets)
+[Lab B: Register assets in Cloud Storage](04-register-assets-into-zones.md#2-lab-b-register-assets-in-google-cloud-storage)
 
 
 ## 1. Lab A: Register BigQuery Datasets
