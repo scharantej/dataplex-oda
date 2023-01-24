@@ -267,7 +267,7 @@ Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-MISC-ZONE -> Assets & famil
 
 <hr>
 
-This concludes the lab module. In the next lab module, we will review automated discovery fo assets, schema inference, and external table creation.
+This concludes the lab module. In the next lab module, we will review automated discovery of assets, schema inference, and external table creation.
 
 <hr>
 
