@@ -10,6 +10,7 @@ In the previous module, we created a Dataplex Lake with a Dataproc Metastore Ser
 
 Paste into Cloud Shell-
 ```
+
 PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
 PROJECT_NBR=`gcloud projects describe $PROJECT_ID | grep projectNumber | cut -d':' -f2 |  tr -d "'" | xargs`
 UMSA_FQN="lab-sa@${PROJECT_ID}.iam.gserviceaccount.com"
@@ -23,7 +24,6 @@ MISC_RAW_ZONE_NM="oda-misc-zone"
 
 CRIMES_ASSET="chicago-crimes"
 CRIMES_DS="oda_crimes_ds"
-
 
 ```
 
@@ -81,8 +81,15 @@ Author's output:
 Paste this command in Cloud Shell to register contents of BQ datasets (currently empty) into corressponding zones-
 
 ```
-gcloud dataplex assets create $CRIMES_ASSET --location=$LOCATION --lake=$LAKE_NM --zone=$DATA_RAW_ZONE_NM --resource-type=BIGQUERY_DATASET \
---resource-name=projects/$PROJECT_ID/datasets/$CRIMES_DS --discovery-enabled --discovery-schedule="0 * * * *" \
+
+gcloud dataplex assets create $CRIMES_ASSET \
+--location=$LOCATION \
+--lake=$LAKE_NM \
+--zone=$DATA_RAW_ZONE_NM \
+--resource-type=BIGQUERY_DATASET \
+--resource-name=projects/$PROJECT_ID/datasets/$CRIMES_DS \
+--discovery-enabled \
+--discovery-schedule="0 * * * *" \
 --display-name 'Chicago Crimes'
 
 ```
