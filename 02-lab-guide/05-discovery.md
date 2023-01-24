@@ -50,6 +50,10 @@ Observe the "Action" from the schema inference job.
 ![DISC-6](../01-images/05-06.png)   
 <br><br>
 
+
+![DISC-7](../01-images/05-07.png)   
+<br><br>
+
 The data in question is for the Telco Customer Churn Prediction usecase. Both the files in the underlying GCS buckets have different set of columns. Paste the below in Cloud Shell.
 
 ```
@@ -93,12 +97,11 @@ Review the asset, entities, schema, external table in BigQuery for assets in the
 
 ### 3. Discovery of non-data assets in the RAW Zone: oda-misc-zone
 
-Review the asset, entities, in the Dataplex oda-misc-zone. Notice that Dataplex does not do schema inference, create external tables etc.
-
-![DISC-7](../01-images/05-07.png)   
-<br><br>
-
+Review the asset, entities, in the Dataplex oda-misc-zone. Notice that Dataplex does not do schema inference, create external tables etc and categorizes the assets as of "fileset" type.
 <br>
+
+![DISC-8](../01-images/05-08.png)   
+<br><br>
 
 <hr>
 This concludes the lab module. Proceed to the next module, where we will create a Dataplex "Environment" lanuch up a Jupyter notebook and explore metadata.
