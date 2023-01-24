@@ -225,7 +225,7 @@ GCS Path: gs://oda-raw-notebook-PROJECT_NBR
 | Chicago Crimes Analytics | .pynb | chicago-crimes-analysis | 
 | Icecream Sales Forecasting | .pynb | icecream-sales-forecasting |
 | Retail Transactions Anomaly Detection | .ipynb | retail-transactions-anomaly-detection |
-| Telco Customer Churn Prediction | CSV | telco-customer-churn-prediction | 
+| Telco Customer Churn Prediction | .pynb | telco-customer-churn-prediction | 
 
 
 To see the listing in Cloud Shell, paste the below command-
