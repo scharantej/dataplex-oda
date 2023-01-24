@@ -2,7 +2,7 @@
 # Register Assets into your Dataplex Lake Zones
 
 In the previous module, we created a Dataplex Lake with a Dataproc Metastore Service, and Dataplex Zones with discovery enabled. <br>
-In this module, we will register assets into the Dataplex zones created. 
+In this module, we will register assets into the Dataplex Zones created. 
 
 [Lab A: Register assets in BigQuery](04-register-assets-into-zones.md#1-lab-a-register-bigquery-datasets) <br>
 [Lab B: Register assets in Cloud Storage](04-register-assets-into-zones.md#2-lab-b-register-cloud-storage-datasets)
