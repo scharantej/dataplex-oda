@@ -129,7 +129,7 @@ The physical BigQuery table is called an entity in this case, and is listed.
 ![ASST-6](../01-images/04-03b.png)   
 <br><br>
 
-## 2. Lab B: Register Cloud Storage Datasets
+## 2. Lab B: Register assets in Google Cloud Storage
 
 In this lab sub-module, we will simply add the storage buckets created via Terraform with datasets in them, into the raw zone, and curated zone, depending on format.
 
