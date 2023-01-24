@@ -136,12 +136,36 @@ In this lab sub-module, we will simply add the storage buckets created via Terra
 
 ### 2.1. Register data assets into Raw Zone: oda-raw-zone
 
+#### 2.1.1. Assets to be registered
+
+The following are the raw data assets to be registered into the Dataplex Raw Zone called oda-raw-zone. The data assets are located at -<br>
 GCS Path: gs://oda-raw-data-PROJECT_NBR
 
 | Domain Use Case | Format | GCS directory | 
 | -- | :--- | :--- | 
 | Icecream Sales Forecasting | CSV | icecream-sales-forecasting | 
 | Telco Customer Churn Prediction | CSV | telco-customer-churn-prediction | 
+
+
+#### 2.1.2. Register the assets
+
+To register the data assets, we will merely register the buckets and the data assets will automatically get discovered and entities registered.
+
+```
+gcloud dataplex assets create lab-datasets \
+--location=$LOCATION \
+--lake=$LAKE_NM \
+--zone=$DATA_RAW_ZONE_NM \
+--resource-type=STORAGE_BUCKET \
+--resource-name=projects/$PROJECT_ID/buckets/oda-raw-data-$PROJECT_NBR \
+--discovery-enabled \
+--discovery-schedule="0 * * * *"
+```
+
+#### 2.1.3. Review the assets registered in the Dataplex UI
+
+Dataplex UI -> Manage -> ODA-LAKE -> ODA-RAW-ZONE 
+
 
 ### 2.2. Register data assets into Curated Zone: oda-curated-zone
 
