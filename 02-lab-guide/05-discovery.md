@@ -64,3 +64,25 @@ gs://oda-raw-data-36819656457/telco-customer-churn-prediction/customer_churn_sco
 gs://oda-raw-data-36819656457/telco-customer-churn-prediction/customer_churn_train_data.csv<br>
 
 
+Lets look at the schema of customer_churn_train_data.csv:
+```
+gsutil cat gs://oda-raw-data-$PROJECT_NBR/telco-customer-churn-prediction/customer_churn_train_data.csv | head -1
+```
+
+Author's output:<br>
+customerID,gender,SeniorCitizen,Partner,Dependents,tenure,PhoneService,MultipleLines,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,Contract,PaperlessBilling,PaymentMethod,MonthlyCharges,TotalCharges,Churn<br>
+
+
+Lets look at the schema of customer_churn_score_data.csv:
+```
+gsutil cat gs://oda-raw-data-$PROJECT_NBR/telco-customer-churn-prediction/customer_churn_score_data.csv | head -1
+```
+
+Author's output:<br>
+customerID,gender,SeniorCitizen,Partner,Dependents,tenure,PhoneService,MultipleLines,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,Contract,PaperlessBilling,PaymentMethod,MonthlyCharges,TotalCharges<br>
+
+Notice that the train data has the column "Churn".<br>
+
+We will remediate the action in the next lab module.
+
+
