@@ -99,6 +99,11 @@ Paste this in cloud shell-
 gcloud beta metastore services update ${METASTORE_NM} --data-catalog-sync --location=$LOCATION 
 ```
 
+Validate in the Dataproc Metastore UI-
+
+![IAM](../01-images/03-04.png)   
+<br><br>
+
 Documentation: https://cloud.google.com/dataproc-metastore/docs/data-catalog-sync
 
 ### 2.4. Create a Lake
