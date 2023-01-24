@@ -260,9 +260,15 @@ gcloud dataplex assets create notebooks \
 
 Navigate to Dataplex UI -> Manage -> ODA-LAKE -> ODA-MISC-ZONE -> Assets & familiarize yourself with the various tabs and entries.
 
-![ASST-RD-1](../01-images/04-06a.png)   
+![ASST-RMD-1](../01-images/04-06a.png)   
 <br><br>
+
+<br>
 
 <hr>
 
-<br>
+This concludes the lab module. In the next lab module, we will review automated discovery fo assets, schema inference, and external table creation.
+
+<hr>
+
+
