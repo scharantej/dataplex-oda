@@ -91,6 +91,7 @@ VPC_NM="lab-vpc-$PROJECT_NBR"
 UMSA_FQN="lab-sa@${PROJECT_ID}.iam.gserviceaccount.com"
 LOCATION="us-central1"
 LAKE_NM="oda-lake"
+SQL_SCRIPT_CONTENT_STORE_URI="projects/$PROJECT_ID/locations/$LOCATION/lakes/$LAKE_NM/contentitems/chicago-crimes.sql"
 RAND_VAL=$RANDOM
 
 gcloud dataplex tasks create chicago-crimes-report-$RAND_VAL \
@@ -100,7 +101,7 @@ gcloud dataplex tasks create chicago-crimes-report-$RAND_VAL \
 --trigger-type=ON_DEMAND  \
 --execution-service-account="$UMSA_FQN" \
 --vpc-network-name="$VPC_NM"  \
---spark-sql-script="chicago-crimes.sql" \ 
+--spark-sql-script="$SQL_SCRIPT_CONTENT_STORE_URI" \ 
 --execution-args=^::^TASK_ARGS="--output_location,gs://oda-raw-data-36819656457/chicago-crimes-report-$RAND_VAL,--output_format,csv"
 
 ```
