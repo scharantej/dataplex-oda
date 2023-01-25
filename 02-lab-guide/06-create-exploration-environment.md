@@ -46,6 +46,10 @@ A Python 3 notebook is a Jupyter notebook that is saved as content in Dataplex w
 
 For data in BigQuery, you can access BigQuery tables directly through Spark without using the %%bigquery magic command.
 
+<hr>
+
+<hr>
+
 ## 3. Lab: Create a Dataplex Exploration Workbench Environment
 
 
@@ -67,14 +71,42 @@ MISC_RAW_ZONE_NM="oda-misc-zone"
 CRIMES_ASSET="chicago-crimes"
 CRIMES_DS="oda_crimes_ds"
 ```
-### 3.2. Create a DEW environment template
 
+### 3.2. Create a Data Engineering DEW Spark environment template
+
+Paste the below in Cloud Shell-
 ```
-gcloud dataplex environments create de-dew-template \
+
+gcloud dataplex environments create data-engineering-spark-env-template \
 --project=$PROJECT_ID \
 --location=$LOCATION \
 --lake=$LAKE_NM \
 --os-image-version=1.0 \
---display-name "Data Engineering DEW Template"
+--display-name "Data Engineering DEW Template" \
+--compute-node-count=3 \
+--compute-max-node-count=6 
+
 ```
+
+### 3.3. Create a Data Engineering DEW Spark environment template
+
+Paste the below in Cloud Shell-
+```
+
+gcloud dataplex environments create data-science-spark-env-template-template \
+--project=$PROJECT_ID \
+--location=$LOCATION \
+--lake=$LAKE_NM \
+--os-image-version=1.0 \
+--os-image-python-packages=pandas,plotly,prophet \
+--display-name "Data Science DEW Template" \
+--compute-node-count=3 \
+--compute-max-node-count=6 
+
+```
+
+
+
+
+
 
