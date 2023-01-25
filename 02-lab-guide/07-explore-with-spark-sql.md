@@ -117,6 +117,9 @@ You can share scripts with other principals as shown below-
 ![DEW-10](../01-images/07-11.png)   
 <br><br>
 
+![DEW-10](../01-images/07-12.png)   
+<br><br>
+
 <hr>
 
 ### 6. Query a table in the BigQuery public dataset for Chicago crimes
