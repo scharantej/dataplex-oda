@@ -7,6 +7,14 @@ In this lab module, we will query the raw asset Chicago Crimes using Spark SQL o
 
 ## Lab
 
+### 0. Prerequisites
+
+If you run queries that use the BigQuery API, you willl need to grant the principal the following role-<br>
+roles/serviceusage.serviceUsageConsumer
+
+Lets go ahead and grant the User Managed Service Account the role, from Cloud Shell-
+
+
 ### 1. Navigate to the Spark SQL Workbench 
 Navigate to the Dataplex UI -> Explore as showin below, in the Cloud Console-
 
@@ -46,62 +54,69 @@ PROJECT_NBR=`gcloud projects describe $PROJECT_ID | grep projectNumber | cut -d'
 echo gs://oda-raw-code-$PROJECT_NBR/chicago-crimes
 ```
 
-Follow the steps as shown below-
+Follow the steps as shown below-<br>
 
+![DEW-3](../01-images/07-03.png)   
+<br><br>
 
-
+![DEW-4](../01-images/07-04.png)   
+<br><br>
 
 Notice where the script is persisted - in the content store in Dataplex.
 
-
-
-
+![DEW-5](../01-images/07-05.png)   
+<br><br>
 
 <hr>
 
-### 6. Schedule the SQL script to run
+### 4. Schedule the SQL script to run
 
-#### 6.1. Create a network and subnet called default, and a firewall rule for intra-subnet allow-all
-This is currently the only name constuct supported by scheduled scripts and notebooks in Dataplex.
+We will schedule a report to run and write results to a GCS bucket.
 
+#### 4.1. Schedule a script
 ```
 PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
+PROJECT_NBR=`gcloud projects describe $PROJECT_ID | grep projectNumber | cut -d':' -f2 |  tr -d "'" | xargs`
+VPC_NM="lab-vpc-$PROJECT_NBR"
+
+UMSA_FQN="lab-sa@${PROJECT_ID}.iam.gserviceaccount.com"
 LOCATION="us-central1"
-SUBNET_CIDR="10.2.0.0/16"
-VPC_NM=default
-SUBNET_NM=default
+LAKE_NM="oda-lake"
+RAND_VAL=$RANDOM
 
-gcloud compute networks create $VPC_NM \
+gcloud dataplex tasks create chicago-crimes-report-$RAND_VAL \
 --project=$PROJECT_ID \
---subnet-mode=custom \
---mtu=1460 \
---bgp-routing-mode=regional
-
-gcloud compute networks subnets create $SUBNET_NM \
---project=$PROJECT_ID \
---range=$SUBNET_CIDR \
---stack-type=IPV4_ONLY \
---network=$VPC_NM \
---region=$LOCATION \
---enable-private-ip-google-access
-
-gcloud compute --project=$PROJECT_ID firewall-rules create allow-intra-subnet-for-spark \
---direction=INGRESS \
---priority=1000 \
---network=$VPC_NM \
---action=ALLOW \
---rules=all \
---source-ranges=$SUBNET_CIDR
-
+--location=$LOCATION \
+--lake=$LAKE_NM \
+--trigger-type=ON_DEMAND  \
+--spark-sql-script="chicago-crimes.sql" \ 
+--execution-service-account=$UMSA_FQN \
+--vpc-network-name=$VPC_NM  \
+--execution-args=^::^TASK_ARGS="--output_location,gs://oda-raw-data-36819656457/chicago-crimes-report-$RAND_VAL,--output_format,csv"
 
 ```
 
+#### 4.2. Review the results in the bucket
+
+
+
+
+
 
 <hr>
+
+### 5. Share SQL scripts with other users
+
+
+
 
 ### 7. Query a table in the BigQuery public dataset for Chicago crimes
 
+Try running a query against a BigQuery dataset and it will fail. This is because the data Exploration Workbench only supports assets in the lake.
 
+
+![DEW-10](../01-images/07-10.png)   
+<br><br>
 
 <hr>
 This concludes the lab module. In the next module, we will learn to query metadata in the Dataproc Metastore (Apache Hive Metastore) with Spark SQL.
