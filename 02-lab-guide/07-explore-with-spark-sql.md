@@ -43,7 +43,7 @@ Author's output-
 ![DEW-1](../01-images/07-02.png)   
 <br><br>
 
-Then run an aggregation query-
+Then run an aggregation query to find the number of crimes per year in Chicago -
 ```
 select year as crime_year, count(*) as crimes_count from oda_raw_zone.chicago_crimes group by year order by year desc
 ```
