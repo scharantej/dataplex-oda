@@ -98,9 +98,9 @@ gcloud dataplex tasks create chicago-crimes-report-$RAND_VAL \
 --location=$LOCATION \
 --lake=$LAKE_NM \
 --trigger-type=ON_DEMAND  \
+--execution-service-account="$UMSA_FQN" \
+--vpc-network-name="$VPC_NM"  \
 --spark-sql-script="chicago-crimes.sql" \ 
---execution-service-account=$UMSA_FQN \
---vpc-network-name=$VPC_NM  \
 --execution-args=^::^TASK_ARGS="--output_location,gs://oda-raw-data-36819656457/chicago-crimes-report-$RAND_VAL,--output_format,csv"
 
 ```
@@ -108,18 +108,18 @@ gcloud dataplex tasks create chicago-crimes-report-$RAND_VAL \
 #### 4.2. Review the results in the bucket
 
 
-
-
-
-
 <hr>
 
 ### 5. Share SQL scripts with other users
 
+You can share scripts with other principals as shown below-
 
+![DEW-10](../01-images/07-11.png)   
+<br><br>
 
+<hr>
 
-### 7. Query a table in the BigQuery public dataset for Chicago crimes
+### 6. Query a table in the BigQuery public dataset for Chicago crimes
 
 Try running a query against a BigQuery dataset and it will fail. This is because the data Exploration Workbench only supports assets in the lake.
 
