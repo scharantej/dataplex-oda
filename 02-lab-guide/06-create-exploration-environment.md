@@ -53,7 +53,9 @@ For data in BigQuery, you can access BigQuery tables directly through Spark with
 
 <hr>
 
-## 3. Lab: Create a Dataplex Exploration Workbench Environment
+## 3. Lab: Create a Dataplex Exploration Workbench Environment Template
+
+Note that the DEW environment template is merely metadata for an infrastructure configuration, and does not consume resources. Therefore, creation of a template is instantaneous.
 
 
 ### 3.1. Declare variables
@@ -93,6 +95,15 @@ gcloud dataplex environments create data-engineering-spark-env-template \
 
 ```
 
+Review the environment in the Dataplex UI as shown below.
+
+![DEW-DE-1](../01-images/06-01.png)   
+<br><br>
+
+![DEW-DE-2](../01-images/06-02.png)   
+<br><br>
+
+
 ### 3.3. Create a Data Science DEW Spark environment template
 
 Paste the below in Cloud Shell-
@@ -109,6 +120,18 @@ gcloud dataplex environments create data-science-spark-env-template-template \
 --compute-max-node-count=6 
 
 ```
+
+Review the environment in the Dataplex UI as shown below.
+
+![DEW-DE-3](../01-images/06-03.png)   
+<br><br>
+
+![DEW-DE-4](../01-images/06-04.png)   
+<br><br>
+
+Note the libraries added to the enviorment template for bootstrapping.
+
+
 
 <hr>
 This concludes the lab module. In the next module, we will learn how to use the Spark SQL workbench.
