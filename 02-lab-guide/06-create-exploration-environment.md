@@ -10,20 +10,23 @@ Explore provisions, scales, and manages the serverless infrastructure required t
 ## 2. Terminology levelset
 The following terms are used in the context of Data Exploration Workbench-
 
-### Environment
-An environment provides serverless compute resources for your Spark SQL queries and notebooks to run within a lake. Environments are created and managed by a Dataplex administrator.
+### Dataplex Environment
+A Dataplex environment is essentially serverless compute resources for the Dataplex Spark SQL query workbench and Jupyter notebooks. 
 
-Administrators can authorize one or more users to run queries and notebooks on the configured environment by granting them the Developer role or associated IAM permissions.
+### Dataplex Environment Template
+An environment is a infrastructure specification for serverless Spark and can include libraries of interest by the end users. 
 
-### Session
-When an authorized user chooses an environment to run their queries and notebooks, Dataplex uses the specified environment configuration to create a user-specific active session. Depending on the environment configuration, a session automatically terminates if it's not used.
+Environment templates are created and managed by a Dataplex administrator and they can authorize users to use environment templates by granting predefined roles.
+
+### Dataplex Environment Session
+When an authorized user chooses an environment template to run their queries and notebooks, Dataplex creates a user-specific active serverles Spark interactive session. There is no resource contention across users, as each session is exclusively tied to a single user. Depending on the environment configuration, a session automatically terminates if it's not used.
 
 It takes a couple of minutes to start a new session per user. Once a session is active, it is used to run subsequent queries and notebooks for the same user. A session is active for a maximum of 10 hours.
 
 Tip: Create a default environment with fast startup enabled to reduce the session startup time.
 For an environment, only one session is created per user, which is shared by both Spark SQL scripts and Jupyter notebooks.
 
-Dataplex uses user credentials within a session to run operations, such as querying the data from Cloud Storage and BigQuery.
+Dataplex uses user credentials within a session to run operations, such as querying the data from Cloud Storage and BigQuery. This allows for fine grained audit trail.
 
 ### Node
 A node specifies the compute capacity in an environment configuration. One node maps to 4 Data Compute Units (DCU), which is comparable to 4 vCPUs and 16 GB of RAM.
@@ -39,10 +42,10 @@ You can create one default environment per lake with the ID default. A default e
 6. If you don't choose an environment explicitly and if you have set up a default environment beforehand, then Dataplex uses the default environment to create sessions.
 
 ### SQL script
-A SQL script is a Spark SQL script that's saved as content in Dataplex within a lake. You can save the script within a lake and share it with other principals. Also, you can schedule it to run as a batch serverless Spark job in Dataplex. Dataplex enables out-of-the-box Spark SQL access to tables that map to data in Cloud Storage and BigQuery.
+A SQL script is a Spark SQL script can be created and saved as content from Dataplex Exploration Workbench in a Dataplex lake. The scriptcan be shared with with other principals and can be scheduled to run as a batch serverless Spark job in Dataplex. Dataplex enables out-of-the-box Spark SQL access to (Dataplex Lake entities) tables that map to data in Cloud Storage and BigQuery.
 
 ### Notebook
-A Python 3 notebook is a Jupyter notebook that is saved as content in Dataplex within a lake. You can save a notebook as content within a lake and share it with other principals, or schedule it to run as a Dataproc Serverless Spark batch job in Dataplex.
+A Python 3 notebook is a Jupyter notebook that is saved as content in Dataplex within a Dataplex lake. You can save a notebook as content within a lake and share it with other principals, or schedule it to run as a Dataproc Serverless Spark batch job in Dataplex.
 
 For data in BigQuery, you can access BigQuery tables directly through Spark without using the %%bigquery magic command.
 
@@ -107,7 +110,9 @@ gcloud dataplex environments create data-science-spark-env-template-template \
 
 ```
 
-
+<hr>
+This concludes the lab module. In the next module, we will learn how to use the Spark SQL workbench.
+<hr>
 
 
 
