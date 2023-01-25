@@ -57,6 +57,7 @@ For data in BigQuery, you can access BigQuery tables directly through Spark with
 
 Paste the folloing in Cloud Shell-
 ```
+
 PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
 PROJECT_NBR=`gcloud projects describe $PROJECT_ID | grep projectNumber | cut -d':' -f2 |  tr -d "'" | xargs`
 UMSA_FQN="lab-sa@${PROJECT_ID}.iam.gserviceaccount.com"
@@ -70,6 +71,7 @@ MISC_RAW_ZONE_NM="oda-misc-zone"
 
 CRIMES_ASSET="chicago-crimes"
 CRIMES_DS="oda_crimes_ds"
+
 ```
 
 ### 3.2. Create a Data Engineering DEW Spark environment template
