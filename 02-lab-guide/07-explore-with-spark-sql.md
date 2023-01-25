@@ -14,6 +14,15 @@ roles/serviceusage.serviceUsageConsumer
 
 Lets go ahead and grant the User Managed Service Account the role, from Cloud Shell-
 
+```
+PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
+UMSA_FQN="lab-sa@${PROJECT_ID}.iam.gserviceaccount.com"
+
+gcloud projects add-iam-policy-binding $PROJECT_ID --member=serviceAccount:$UMSA_FQN \
+--role="roles/serviceusage.serviceUsageConsumer"
+
+```
+
 
 ### 1. Navigate to the Spark SQL Workbench 
 Navigate to the Dataplex UI -> Explore as showin below, in the Cloud Console-
