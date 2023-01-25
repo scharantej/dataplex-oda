@@ -90,7 +90,7 @@ gcloud dataplex environments create data-engineering-spark-env-template \
 
 ```
 
-### 3.3. Create a Data Engineering DEW Spark environment template
+### 3.3. Create a Data Science DEW Spark environment template
 
 Paste the below in Cloud Shell-
 ```
